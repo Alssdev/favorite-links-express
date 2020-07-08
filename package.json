@@ -4,11 +4,7 @@
   "description": "A Aplication that save your favorites links.",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "dev": "nodemon src/index.js"
-=======
-    "dev": "nodemon src/"
->>>>>>> 1f2f56e... Creación de la Estructura princiapl del proyecto
   },
   "author": "Alessandro Morales",
   "license": "ISC",

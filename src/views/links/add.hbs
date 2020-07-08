@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <form action="/links/add" method="POST" class="form box">
+        <h3 class="title is-3">Nuevo Enlace</h3>
+        <div class="field">
+          <label class="label"> Nombre </label>
+          <div class="control">
+            <input class="input" name="name" placeholder="Escribe el nombre del enlace" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">URL</label>
+          <div class="control">
+            <input class="input" name="url" type="url" placeholder="Escribe la dirección de la página" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Descripción</label>
+          <div class="control">
+            <textarea class="textarea" name="description" placeholder="Escribe un a descripción" ></textarea> 
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button class="button is-link">Agregar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 
