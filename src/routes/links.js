@@ -13,22 +13,31 @@ router.post('/add', async (req, res) => {
 
   try {
     await db.query('INSERT INTO links SET ?', [newLink]);
+    res.redirect('/links');
   } catch (error) {
-    console.log(error);
+    // handle error
   }
-
-  res.redirect('/links');
 });
 
 router.get('/', async (req, res) => {
   let links = [];
   try {
     links = await db.query('SELECT * FROM links');
+    res.render('links/list', { links });
   } catch (error) {
-    console.log('error');
+    // handle error
   }
+});
 
-  res.render('links/list', { links });
+router.get('/delete/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.query('DELETE FROM links WHERE ID = ?', id);
+    res.redirect('/links');
+  } catch (error) {
+    // handle error
+  }
 });
 
 module.exports = router;
