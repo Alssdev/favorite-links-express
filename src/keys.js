@@ -1,8 +1,8 @@
 module.exports = {
   database: {
     host: 'localhost', // your host
-    user: 'root', // your username
-    password: 'aw311ag0', // your username
+    user: 'admin', // your username
+    password: '$Proyects123', // your password
     database: 'links', // your database name
   },
-}
+};
