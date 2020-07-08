@@ -20,9 +20,8 @@ router.post('/add', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  let links = [];
   try {
-    links = await db.query('SELECT * FROM links');
+    const links = await db.query('SELECT * FROM links');
     res.render('links/list', { links });
   } catch (error) {
     // handle error
@@ -34,6 +33,30 @@ router.get('/delete/:id', async (req, res) => {
 
   try {
     await db.query('DELETE FROM links WHERE ID = ?', id);
+    res.redirect('/links');
+  } catch (error) {
+    // handle error
+  }
+});
+
+router.get('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const links = await db.query('SELECT * FROM links WHERE ID = ?', id);
+    res.render('links/edit', { link: links[0] });
+  } catch (error) {
+    // handle error
+  }
+});
+
+router.post('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, url, description } = req.body;
+  const updatedLink = { title, url, description };
+
+  try {
+    await db.query('UPDATE links SET ? WHERE id = ?', [updatedLink, id]);
     res.redirect('/links');
   } catch (error) {
     // handle error

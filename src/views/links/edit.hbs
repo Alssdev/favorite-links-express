@@ -1,0 +1,34 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-three-fifths is-offset-one-fifth">
+        <form action="/links/edit/{{link.id}}" method="POST" class="form box">
+          <h3 class="title is-3">Editar Enlace</h3>
+          <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+              <input class="input" name="title" value="{{link.title}}" maxlength="150" placeholder="Escribe el nombre del enlace" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">URL</label>
+            <div class="control">
+              <input class="input" name="url" type="url" value="{{link.url}}" maxlength="255" placeholder="Escribe la dirección de la página" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Descripción</label>
+            <div class="control">
+              <textarea class="textarea" name="description" placeholder="Escribe un a descripción" >{{link.description}}</textarea> 
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-link">Editar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> 
+</section>
