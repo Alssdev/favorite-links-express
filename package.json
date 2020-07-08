@@ -4,7 +4,9 @@
   "description": "A Aplication that save your favorites links.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "css-build": "node-sass --omit-source-map-url src/public/css/styles.scss src/public/css/styles.css",
+    "css-watch": "npm run css-build -- --watch"
   },
   "author": "Alessandro Morales",
   "license": "ISC",
@@ -22,7 +24,9 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
+    "bulma": "^0.9.0",
     "morgan": "^1.10.0",
+    "node-sass": "^4.14.1",
     "nodemon": "^2.0.4"
   }
 }

@@ -1,0 +1,28 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+
+      {{#each links}}
+      <div class="column is-3">
+        <div class="card">
+          <a href="{{url}}" target="_blank">
+            <header class="card-header">
+              <p class="card-header-title">{{title}}</p>
+            </header>
+          </a>
+          <div class="card-content">
+            <div class="content">
+              {{description}}
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" href="#">Eliminar</a>
+            <a class="card-footer-item" href="#">Editar</a>
+          </footer>
+        </div>
+        
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>

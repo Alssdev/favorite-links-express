@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+// colors
+$primary: #0877d1;
+
+// card
+$card-header-color: #ffffff;
+$card-header-background-color: $primary;
+
+@import '../../../node_modules/bulma/bulma.sass';
