@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "css-build": "node-sass --omit-source-map-url src/public/css/styles.scss src/public/css/styles.css",
+    "css-build": "node-sass --omit-source-map-url src/public/bulma.scss src/public/css/bulma.css",
     "css-watch": "npm run css-build -- --watch"
   },
   "author": "Alessandro Morales",

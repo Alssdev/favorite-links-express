@@ -13,6 +13,7 @@ router.post('/add', async (req, res) => {
 
   try {
     await db.query('INSERT INTO links SET ?', [newLink]);
+    req.flash('success', 'Su link se ha guardado correctamente.');
     res.redirect('/links');
   } catch (error) {
     // handle error
