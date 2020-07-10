@@ -11,7 +11,7 @@ router.get('/add', isLoggedIn, (req, res) => {
 
 router.post('/add', isLoggedIn, async (req, res) => {
 	const { title, url, description } = req.body;
-	const newLink = { title, url, description };
+	const newLink = { title, url, description, user_id: req.user.id };
 
 	try {
 		await db.query('INSERT INTO links SET ?', [newLink]);
@@ -24,10 +24,13 @@ router.post('/add', isLoggedIn, async (req, res) => {
 
 router.get('/', isLoggedIn, async (req, res) => {
 	try {
-		const links = await db.query('SELECT * FROM links');
+		const links = await db.query(
+			'SELECT * FROM links WHERE user_id = ?',
+			req.user.id
+		);
 		res.render('links/list', { links });
 	} catch (error) {
-		// handle error
+		console.error(error);
 	}
 });
 
@@ -47,7 +50,7 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 
 	try {
-		const links = await db.query('SELECT * FROM links WHERE ID = ?', id);
+		const links = await db.query('SELECT * FROM links WHERE id = ?', id);
 		res.render('links/edit', { link: links[0] });
 	} catch (error) {
 		// handle error
@@ -57,7 +60,7 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
 router.post('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 	const { title, url, description } = req.body;
-	const updatedLink = { title, url, description };
+	const updatedLink = { title, url, description, user_id: req.user.id };
 
 	try {
 		await db.query('UPDATE links SET ? WHERE id = ?', [updatedLink, id]);
