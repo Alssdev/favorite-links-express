@@ -34,6 +34,7 @@ router.get('/delete/:id', async (req, res) => {
 
   try {
     await db.query('DELETE FROM links WHERE ID = ?', id);
+    req.flash('success', 'Su link se ha eliminado correctamente.');
     res.redirect('/links');
   } catch (error) {
     // handle error
@@ -58,6 +59,7 @@ router.post('/edit/:id', async (req, res) => {
 
   try {
     await db.query('UPDATE links SET ? WHERE id = ?', [updatedLink, id]);
+    req.flash('success', 'Su link se ha actualizado correctamente');
     res.redirect('/links');
   } catch (error) {
     // handle error
