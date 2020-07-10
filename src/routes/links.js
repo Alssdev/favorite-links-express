@@ -3,67 +3,69 @@ const router = Router();
 
 const db = require('../database');
 
-router.get('/add', (req, res) => {
-  res.render('links/add');
+const { isLoggedIn } = require('../lib/auth');
+
+router.get('/add', isLoggedIn, (req, res) => {
+	res.render('links/add');
 });
 
-router.post('/add', async (req, res) => {
-  const { title, url, description } = req.body;
-  const newLink = { title, url, description };
+router.post('/add', isLoggedIn, async (req, res) => {
+	const { title, url, description } = req.body;
+	const newLink = { title, url, description };
 
-  try {
-    await db.query('INSERT INTO links SET ?', [newLink]);
-    req.flash('success', 'Su link se ha guardado correctamente.');
-    res.redirect('/links');
-  } catch (error) {
-    // handle error
-  }
+	try {
+		await db.query('INSERT INTO links SET ?', [newLink]);
+		req.flash('success', 'Su link se ha guardado correctamente.');
+		res.redirect('/links');
+	} catch (error) {
+		// handle error
+	}
 });
 
-router.get('/', async (req, res) => {
-  try {
-    const links = await db.query('SELECT * FROM links');
-    res.render('links/list', { links });
-  } catch (error) {
-    // handle error
-  }
+router.get('/', isLoggedIn, async (req, res) => {
+	try {
+		const links = await db.query('SELECT * FROM links');
+		res.render('links/list', { links });
+	} catch (error) {
+		// handle error
+	}
 });
 
-router.get('/delete/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/delete/:id', isLoggedIn, async (req, res) => {
+	const { id } = req.params;
 
-  try {
-    await db.query('DELETE FROM links WHERE ID = ?', id);
-    req.flash('success', 'Su link se ha eliminado correctamente.');
-    res.redirect('/links');
-  } catch (error) {
-    // handle error
-  }
+	try {
+		await db.query('DELETE FROM links WHERE ID = ?', id);
+		req.flash('success', 'Su link se ha eliminado correctamente.');
+		res.redirect('/links');
+	} catch (error) {
+		// handle error
+	}
 });
 
-router.get('/edit/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/edit/:id', isLoggedIn, async (req, res) => {
+	const { id } = req.params;
 
-  try {
-    const links = await db.query('SELECT * FROM links WHERE ID = ?', id);
-    res.render('links/edit', { link: links[0] });
-  } catch (error) {
-    // handle error
-  }
+	try {
+		const links = await db.query('SELECT * FROM links WHERE ID = ?', id);
+		res.render('links/edit', { link: links[0] });
+	} catch (error) {
+		// handle error
+	}
 });
 
-router.post('/edit/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, url, description } = req.body;
-  const updatedLink = { title, url, description };
+router.post('/edit/:id', isLoggedIn, async (req, res) => {
+	const { id } = req.params;
+	const { title, url, description } = req.body;
+	const updatedLink = { title, url, description };
 
-  try {
-    await db.query('UPDATE links SET ? WHERE id = ?', [updatedLink, id]);
-    req.flash('success', 'Su link se ha actualizado correctamente');
-    res.redirect('/links');
-  } catch (error) {
-    // handle error
-  }
+	try {
+		await db.query('UPDATE links SET ? WHERE id = ?', [updatedLink, id]);
+		req.flash('success', 'Su link se ha actualizado correctamente');
+		res.redirect('/links');
+	} catch (error) {
+		// handle error
+	}
 });
 
 module.exports = router;

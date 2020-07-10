@@ -15,11 +15,28 @@ passport.use(
 		async (req, username, password, done) => {
 			const { email } = req.body;
 			const newUser = { username, email };
-			newUser.password = await helpers.encryptPassword(password);
 
-			const restul = await db.query('INSERT INTO users SET ?', newUser);
-			newUser.id = restul.insertId;
-			return done(null, newUser);
+			try {
+				newUser.password = await helpers.encryptPassword(password);
+
+				const restul = await db.query('INSERT INTO users SET ?', newUser);
+				newUser.id = restul.insertId;
+
+				return done(
+					null,
+					newUser,
+					req.flash('success', 'Bienvenido a nuestra app ' + username)
+				);
+			} catch {
+				return done(
+					null,
+					false,
+					req.flash(
+						'error',
+						'No pudimos registrarte, por favor revisa los campos'
+					)
+				);
+			}
 		}
 	)
 );
@@ -42,7 +59,7 @@ passport.use(
 					user.password
 				);
 				if (validPassword) {
-					done(null, user, req.flash('success', 'Bienvenido ' + user.username));
+					done(null, user, req.flash('success', 'Bienvenid@ ' + user.username));
 				} else {
 					done(
 						null,

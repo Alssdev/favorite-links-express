@@ -6,6 +6,8 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-end">
+
+      {{#if user}}
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Links
@@ -16,12 +18,15 @@
         </div>
       </div>
       
-      <a class="navbar-item" href="/profile">
-        Perfil
-      </a>
-      <a class="navbar-item">
-        Log Out
-      </a>
+      <a class="navbar-item" href="/profile">Perfil</a>
+      <a class="navbar-item" href="/logout">Log Out</a>
+
+      {{else}}
+
+      <a class="navbar-item" href="/login">Iniciar Sesión</a>
+      <a class="navbar-item" href="/signup">Registrase</a>
+
+      {{/if}}
     </div>
   </div>
 </nav>
