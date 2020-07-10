@@ -20,25 +20,25 @@ require('./lib/passport');
 app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, 'views')); // here are views
 app.engine(
-  '.hbs',
-  exphbs({
-    defaultLayout: 'main',
-    layoutsDir: path.join(app.get('views'), 'layouts'),
-    partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs', // files' extentions
-    helpers: require('./lib/handlebars'),
-  })
+	'.hbs',
+	exphbs({
+		defaultLayout: 'main',
+		layoutsDir: path.join(app.get('views'), 'layouts'),
+		partialsDir: path.join(app.get('views'), 'partials'),
+		extname: '.hbs', // files' extentions
+		helpers: require('./lib/handlebars'),
+	})
 );
 app.set('view engine', '.hbs');
 
 // middlewares
 app.use(
-  session({
-    secret: 'linksappsuccess',
-    resave: false,
-    saveUninitialized: false,
-    store: MySQLStore(database),
-  })
+	session({
+		secret: 'linksappsuccess',
+		resave: false,
+		saveUninitialized: false,
+		store: MySQLStore(database),
+	})
 );
 app.use(flash());
 app.use(morgan('dev'));
@@ -49,15 +49,17 @@ app.use(passport.session());
 
 // global variables
 app.use((req, res, next) => {
-  app.locals.success = req.flash('success');
-  app.locals.error = req.flash('error');
-  next();
+	app.locals.success = req.flash('success');
+	app.locals.error = req.flash('error');
+	app.locals.user = req.user;
+	next();
 });
 
 // routes
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use('/links', require('./routes/links'));
+app.use(require('./routes/users'));
 
 // public files
 app.use(express.static(path.join(__dirname, 'public')));

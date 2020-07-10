@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Tu Perfil</h1>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="img/perfil.png" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{user.username}}</p>
+                <p class="subtitle is -6">{{user.email}}</p>
+              </div>
+            </div>
+            <form class="form" action="/user/{{user.id}}" method="POST">
+              <div class="field">
+
+                {{#if user.biography}}
+                  <label class="label">Un poco sobre tí</label>
+                  
+                {{else}}
+                  <label class="label">Pon una Biografía</label>
+                {{/if}}
+
+                <div class="control">
+                  <textarea class="textarea" name="biography">{{user.biography}}</textarea>
+                </div>
+              </div>
+              <div class="buttons">
+                <button class="button is-success">Actualizar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+</section>
