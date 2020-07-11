@@ -8,13 +8,13 @@ passport.use(
 	'local-signup',
 	new LocalStrategy(
 		{
-			usernameField: 'username',
+			usernameField: 'name',
 			passwordField: 'password',
 			passReqToCallback: true,
 		},
-		async (req, username, password, done) => {
+		async (req, name, password, done) => {
 			const { email } = req.body;
-			const newUser = { username, email };
+			const newUser = { name, email };
 
 			try {
 				newUser.password = await helpers.encryptPassword(password);
@@ -25,7 +25,7 @@ passport.use(
 				return done(
 					null,
 					newUser,
-					req.flash('success', 'Bienvenido a nuestra app ' + username)
+					req.flash('success', 'Bienvenido a nuestra app ' + name)
 				);
 			} catch {
 				return done(
@@ -59,7 +59,7 @@ passport.use(
 					user.password
 				);
 				if (validPassword) {
-					done(null, user, req.flash('success', 'Bienvenid@ ' + user.username));
+					done(null, user, req.flash('success', 'Bienvenid@ ' + user.name));
 				} else {
 					done(
 						null,
