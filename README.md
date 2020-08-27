@@ -1,24 +1,26 @@
-# favorite-links-express
+# Favorite Links Express
 
 Esta es una aplicación que puede guardar todos tus enlaces favoritos y manejar sesiones de usuario. 
 Se utilizó express para el backend y handlebars como view engine.
 
+![captura de links](https://user-images.githubusercontent.com/49174467/91501058-083f9a80-e882-11ea-84cb-494f2e57994b.png)
+
 ## Comenzando 🚀
-### Instalar dependencias
+### Instalar dependencias 🔧
 
 Debes instalar los módulos necesarios ejecutando este comando:
 ```
 npm install
 ```
 
-### Ejecutar pruebas
+### Ejecutar pruebas 🔩
 
 Para correr el proyecto utiliza el siguiente comando:
 ```
 npm run dev
 ```
 
-## Construido con
+## Construido con 🛠️
 
 + [Bulma](http://bulma.io) - *Framework css*
 + [Express](https://expressjs.com/) - *Usado para el backend*
@@ -28,6 +30,8 @@ npm run dev
 + [Mysql](https://github.com/mysqljs/mysql) - *Parar la conexión a la base de datos*
 + [Passport](http://www.passportjs.org/) - *Usado para manejar las sesiones.*
 
-## Autores
+## Autores ✒️
 + **Alessandro Morales** - Constructor del proyecto - [@alssdev](https://twitter.com/alssdev)
+
+### Agradecimientos 🎁
 + **Fazt** - Instructor - [@FaztTech](https://twitter.com/FaztTech)
