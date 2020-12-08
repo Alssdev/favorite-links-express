@@ -32,6 +32,3 @@ npm run dev
 
 ## Autores ✒️
 + **Alessandro Morales** - Constructor del proyecto - [@alssdev](https://twitter.com/alssdev)
-
-### Agradecimientos 🎁
-+ **Fazt** - Instructor - [@FaztTech](https://twitter.com/FaztTech)
